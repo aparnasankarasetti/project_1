@@ -1,4 +1,4 @@
-* Which English wikipedia article got the most traffic on January 20, 2021?
+# Which English wikipedia article got the most traffic on January 20, 2021?
 1)Create external table data (lang string, search string, visit int, deli int)
 row format delimited
 fields terminated by ' '
