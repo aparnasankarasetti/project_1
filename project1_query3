@@ -1,0 +1,9 @@
+CREATE TABLE IF NOT EXISTS hc_clickstream AS SELECT prev, ROUND((occ / 30), 4)  AS daily_cickstream FROM internal_links WHERE prev = 'Hotel_California';
+====================================
+SELECT v.page, c.curr, c.occ, v.total_views, ROUND((c.occ / v.total_views), 4) AS fraction FROM total_a_pageviews v INNER JOIN internal_links c ON (v.page = c.prev) WHERE c.prev = 'Hotel_California'
+AND c.curr != 'Hotel_California_(Eagles_album)' AND c.curr != 'Eagles_(band)';
+====================================
+SELECT v.page, c.curr, c.occ, v.total_views, ROUND((c.occ / v.total_views), 4) AS fraction FROM total_a_pageviews v INNER JOIN internal_links c ON (v.page = c.prev) WHERE c.prev = 'Don_Felder';
+===================================
+SELECT v.page, c.curr, c.occ, v.total_views, ROUND((c.occ / v.total_views), 4) AS fraction FROM total_a_pageviews v INNER JOIN internal_links c ON (v.page = c.prev) WHERE c.prev = 'On_the_Border'
+AND curr != 'One_of_These_Nights' AND curr != 'Desperado_(Eagles_album)';
