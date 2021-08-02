@@ -1,11 +1,16 @@
 # Which English wikipedia article got the most traffic on January 20, 2021?
-Create external table data (lang string, search string, visit int, deli int)
+1)Create external table data (lang string, search string, visit int, deli int)
 row format delimited
 fields terminated by ' '
-location "/tmp/project1table";
-----------------------------------------------------------
-
-LOAD DATA INPATH '/tmp/projecr1table' INTO TABLE target;
-----------------------------------------------------------------
-
-select search, sum(visit) as visits from data group by search order by visits desc limit 20;
+location "/user/raj_ops/Data";
+-------------------------------------------------------------------
+2)LOAD DATA INPATH '/user/raj_ops/DataEng/formated_00.txt' INTO TABLE data;
+------------------------------------------------------------------------------
+3)CREATE TABLE IF NOT EXISTS en_pageview 
+AS SELECT DISTINCT(search), SUM(visit) OVER (PARTITION BY search ORDER BY search)  
+AS total_views FROM data 
+WHERE search != 'Main_Page' AND search != 'Special:Search' AND search != '-';
+------------------------------------------------------------------------
+4)SELECT * FROM en_pageview 
+WHERE total_views > 10000 
+ORDER BY total_views DESC limit 20;
