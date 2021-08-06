@@ -1,5 +1,5 @@
- Create DataBase.
+--- Create DataBase.
 create database wiki; 
 
-Switch To DataBase.
+---Switch To DataBase.
 use wiki;
